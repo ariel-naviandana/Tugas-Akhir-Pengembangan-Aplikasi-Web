@@ -111,6 +111,7 @@ class FilmModel extends Model
 
      public function delete($id_film)
      {
+          $imagePath = null;
           $stmt = $this->mysqli->prepare("SELECT poster_image FROM films WHERE id_film = ?");
           $stmt->bind_param("i", $id_film);
           $stmt->execute();
@@ -125,10 +126,9 @@ class FilmModel extends Model
                if ($imagePath && file_exists($imagePath) && $imagePath !== "images/default_poster.jpg")
                     unlink($imagePath);
 
-               header("Location: ?");
-               exit();
+               header("Location: ?c=Film");
           } else
-               header("Location: ?");
+               header("Location: ?c=Film");
 
           $stmt->close();
      }

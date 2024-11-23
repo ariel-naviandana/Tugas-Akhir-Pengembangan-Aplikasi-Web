@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +19,7 @@ session_start();
         </a>
         <?php
         if (isset($_SESSION['username'])) {
-            echo '<a href="logout.php" class="logout-link">Logout</a>';
+            echo '<a href="?c=Auth&m=logout" class="logout-link">Logout</a>';
         }
         ?>
     </div>

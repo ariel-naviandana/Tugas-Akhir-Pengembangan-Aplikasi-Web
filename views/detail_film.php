@@ -1,6 +1,6 @@
 <div class="film-detail-container">
     <div class="back-button">
-        <button onclick="location.href='?'">&laquo; Kembali</button>
+        <button onclick="location.href='?c=Film'">&laquo; Kembali</button>
     </div>
     <div class="film-info">
         <h1><?php echo htmlspecialchars($film->title); ?></h1>

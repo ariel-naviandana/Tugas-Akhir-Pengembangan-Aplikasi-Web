@@ -13,13 +13,13 @@ class Film extends Controller
       $id_film = $_GET['id_film'];
 
       if (!$id_film)
-         header('Location: index.php?c=Film');
+         header('Location: ?c=Film');
 
       $filmModel = $this->loadModel('FilmModel');
       $film = $filmModel->getById($id_film);
 
       if (!$film->num_rows)
-         header('Location: index.php?c=Film');
+         header('Location: ?c=Film');
 
       $this->loadView('detail_film', ['film' => $film->fetch_object()]);
    }
@@ -32,14 +32,12 @@ class Film extends Controller
 
          if ($_FILES['uploadedfile']['error'] !== UPLOAD_ERR_OK) {
             echo "<script>alert('File upload error: " . $_FILES['uploadedfile']['error'] . "');</script>";
-            echo "<script>window.location.href = '?';</script>";
-            exit();
+            echo "<script>window.location.href = '?c=Film';</script>";
          }
 
          if (!move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
             echo "<script>alert('There was an error uploading the file, please try again!');</script>";
-            echo "<script>window.location.href = '?';</script>";
-            exit();
+            echo "<script>window.location.href = '?c=Film';</script>";
          }
 
          return $target_path;
@@ -53,7 +51,7 @@ class Film extends Controller
       $this->loadView('insert_film');
    }
 
-   public function create(): never
+   public function create(): void
    {
       $filmModel = $this->loadModel('FilmModel');
       $title = addslashes($_POST['title']);
@@ -74,7 +72,6 @@ class Film extends Controller
 
       $filmModel->insert($title, $director, $release_year, $genre, $duration, $synopsis, $cast, $rating, $review, $poster_image, $trailer_url);
       header('Location: ?c=Film');
-      exit;
    }
 
    public function edit_form(): void
@@ -82,13 +79,13 @@ class Film extends Controller
       $id_film = $_GET['id_film'];
 
       if (!$id_film)
-         header('Location: index.php?c=Film');
+         header('Location: ?c=Film');
 
       $filmModel = $this->loadModel('FilmModel');
       $film = $filmModel->getById($id_film);
 
       if (!$film->num_rows)
-         header('Location: index.php?c=Film');
+         header('Location: ?c=Film');
 
       $this->loadView('edit_film', ['film' => $film->fetch_object()]);
    }
