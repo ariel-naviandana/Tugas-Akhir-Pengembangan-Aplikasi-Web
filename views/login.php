@@ -1,3 +1,7 @@
+<?php
+if (isset($_SESSION["username"]))
+    header("Location: ?c=Film");
+?>
 <div class="auth-container">
     <h2>Login</h2>
     <form method="post" action="?c=Auth&m=loginSubmit">

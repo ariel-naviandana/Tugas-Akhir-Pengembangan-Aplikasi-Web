@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION["username"]))
+  header("Location: ?c=Auth");
+?>
+
 <div class="film-container">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h3>Daftar Film</h3>

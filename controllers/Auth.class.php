@@ -27,7 +27,7 @@ class Auth extends Controller
                 echo "<script>alert('Password salah!');</script>";
             }
         } else {
-            echo "<script>alert('Username tidak ditemukan!');</script>";
+            echo "<script>alert('Email tidak ditemukan!');</script>";
         }
         if (isset($_SESSION["username"]))
             echo "<script>window.location.href = '?c=Film';</script>";
